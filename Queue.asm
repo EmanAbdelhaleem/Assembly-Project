@@ -477,13 +477,34 @@ read_char endp
 
 ; display what's in al
 display_char proc near
+    cmp al,':'
+    je print_10
+    
     mov dh,bl  ;save bl value 
     mov bl,0Eh  ;color attribute
     mov ah,0Eh
     int 10h
     mov bl,dh  ; return the bl value as it is (cuz it affected the print fun)
+    jmp diplay_char_stop
+    
+    print_10:
+        call display_ten
+        
+    diplay_char_stop:
     ret
 display_char endp
+
+;------------------------------------;
+
+;function for the case of displaying number 10 when printing a full queue - 2 digits number
+display_ten proc near
+    mov al,'1'
+    call display_char
+    mov al,'0'
+    call display_char
+
+    ret
+display_ten endp
 
 ;------------------------------------;
 
@@ -533,7 +554,7 @@ display_queue proc near
 
     mov ax,count
     add al,30h
-    call display_char   ;it will sadly not be able to display 10 cuz it's 2 digits
+    call display_char   
     lea dx, num_of_elements
     call display_string
     call endl
