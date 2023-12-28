@@ -42,7 +42,7 @@ back_msg db 'The back of the queue is: ','$'
 add_msg db 'Enter a number: ','$'
 full_msg db 'There is no enough space in the queue','$'
 empty_msg db 09,'The queue is already empty','$'
-error_msg db 'Enter valid number!','$'
+error_msg db 09,'Enter valid number!','$'
 newline db 0dh,0ah,'$'
 space db ' ','$'
 
