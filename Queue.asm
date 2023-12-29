@@ -170,7 +170,7 @@ clear proc near
     mov cx, 00h      ; the beginning of the line
     mov dx, 48h      ; from where to start clearing vertically - know by trial
     
-    ;nested loop to clear around whole 3 or 4 sentences written in 20h lines
+    ;nested loop to clear around whole 4 or 5 sentences written in 30h lines
     mov bp,30h       ; number of lines to clear completely vertically - the number was chosen to not affect the diagram
     clr:
         mov bx,300   ; to clear the whole line horizontally
@@ -183,27 +183,6 @@ clear proc near
         mov cx,00h   ;return to the start of the line
         dec bp
     jne clr
-    
-    
-    ; here I only clear 10h horizontally to not affect the diagram and also clear after print function
-    ; in print function up to 10 numbers can be displayed vetically
-    ; note that the line is not the same as the line in coordinates, it's around 5 or 6 times taller
-    
-    mov dx,68h  ;48h+30h
-    mov cx,00h
-    
-    mov bp,80h  ;number of vertical lines to clear
-    clr2:
-        mov bx,10h      ; number of horizontal lines
-        right2:
-            int 10h
-            inc cx      ; to go right
-            dec bx
-        jnz right2
-        inc dx          ; to go down
-        mov cx,00h      ; start at the beginning of the line
-        dec bp
-    jne clr2
     
     ret
 clear endp
@@ -223,7 +202,7 @@ sleep proc near
     ;2000000 = 2sec, use of nested loop due to max-size dx can handle with 16bits.
     mov bp,100
     sleep2:
-        mov dx, 20000   
+        mov dx, 20000  
         delay_loop:
         loop delay_loop 
         
@@ -267,9 +246,9 @@ graphics proc near
     ; drawing the farest left vertical line
     mov bx,20   ; # of pixels to color 
     down:
-        int 10h
-        inc dx  ;to go down
-        dec bx
+       int 10h
+       inc dx  ;to go down
+       dec bx
     jnz down
     
     ; drawing the bottom horizontal line
