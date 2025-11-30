@@ -48,11 +48,4 @@ Welcome to the Interactive Circular Queue project! This educational initiative e
 3. **Functionality:** Comments provide insights into circular operations.
 4. **Experimentation:** Modify code for a deeper understanding.
 
-## Contributors
 
-- Eman Abdelhamid Kamal Abelhalim
-- Shahd Faris Mohammed Badrawy
-
-Contact contributors for questions or collaboration.
-
-Happy coding!
