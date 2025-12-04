@@ -12,8 +12,8 @@ The goal of this project is to help students understand **circular queue mechani
 
 ## Features
 
-* ✔️ Array-based **Circular Queue** (size = 10)
-* ✔️ Supports core operations:
+* Array-based **Circular Queue** (size = 10)
+* Supports core operations:
 
   * `Push`
   * `Pop`
@@ -21,10 +21,10 @@ The goal of this project is to help students understand **circular queue mechani
   * `Back`
   * `Display Queue`
   * `Is Full / Is Empty`
-* ✔️ **On-screen diagram visualization** using BIOS interrupts
-* ✔️ Custom **graphics drawing** (boxes, lines, cursor placement)
-* ✔️ Manual cursor control in both **graphics** and **text modes**
-* ✔️ Delay, clear screen, and utility functions for smooth UI
+* **On-screen diagram visualization** using BIOS interrupts
+* Custom **graphics drawing** (boxes, lines, cursor placement)
+* Manual cursor control in both **graphics** and **text modes**
+* Delay, clear screen, and utility functions for smooth UI
 
 ---
 
@@ -32,7 +32,7 @@ The goal of this project is to help students understand **circular queue mechani
 
 The program uses:
 
-### **🔧 Data Section**
+### **Data Section**
 
 * Circular queue array
 * Pointers (`queue_front`, `queue_back`)
@@ -117,21 +117,21 @@ To run the program you need:
 
 ---
 
-## 🚀 Running the Program
+## Running the Program
 
-### 1️⃣ Assemble
+### Assemble
 
 ```bash
 tasm Queue.asm
 ```
 
-### 2️⃣ Link
+### Link
 
 ```bash
 tlink Queue.obj
 ```
 
-### 3️⃣ Run
+### Run
 
 ```bash
 Queue.exe
@@ -139,24 +139,4 @@ Queue.exe
 
 If using **DOSBox**, mount the project directory and run the commands inside DOSBox.
 
----
-
-## 🧭 Usage Guide
-
-Once the program starts:
-
-1. The graphical queue diagram is drawn
-2. A menu appears:
-
-```
-1. Push an element
-2. Pop an element
-3. Print the whole queue
-4. Print the front
-5. Print the back
-6. Exit
-```
-
-3. Enter a number (1–6)
-4. Interact with the queue visually and textually
 
