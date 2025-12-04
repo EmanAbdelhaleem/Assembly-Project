@@ -1,52 +1,162 @@
-# Interactive Circular Queue Data Structure Readme
 
-## Overview: 
-Demo: [LINK](https://youtu.be/8tfXKkZrkGM?si=rAaYYjyri3cJR11r)
+# Interactive Circular Queue (Assembly Language)
 
-Welcome to the Interactive Circular Queue project! This educational initiative explores the circular queue data structure using assembly language. The array-based implementation includes essential operations like push, pop, next, front, rear, count, and type. It offers a dynamic and space-efficient representation of circular queues.
+**Demo Video:** [LINK](https://youtu.be/8tfXKkZrkGM?si=rAaYYjyri3cJR11r)
 
-## Code Structure
+This project implements a **fully interactive Circular Queue** in **x86 Assembly (TASM/MASM)** with a graphical visualization.
+Users can push, pop, and inspect queue elements—while watching the queue update visually in real-time.
 
-- **Data Section:** Defines variables for circular queue management.
+The goal of this project is to help students understand **circular queue mechanics**, **low-level memory operations**, and **interrupt-based graphics/text handling**.
 
-- **Code Section:**
-  1. **Main Function:** Contains the primary logic for menu navigation and user interaction.
+---
 
-  2. **Display Menu Functions:**
-      - **Display Menu:** Displays the main menu and options.
-      - **Clear Screen:** Clears the screen for a clean display.
-      - **Sleep:** Introduces a delay to prevent screen clearing too quickly.
+## Features
 
-  3. **Graphics Function:** Sets up the graphics screen for visualization.
+* ✔️ Array-based **Circular Queue** (size = 10)
+* ✔️ Supports core operations:
 
-  4. **Displaying Queue Elements on the Diagram:**
-      - **Cursor Function:** Places the cursor on the corresponding cell in the diagram.
-      - **Emplace Element Function:** Displays the pushed element on the diagram.
-      - **Delete Element Function:** Removes the popped element from the diagram.
+  * `Push`
+  * `Pop`
+  * `Front`
+  * `Back`
+  * `Display Queue`
+  * `Is Full / Is Empty`
+* ✔️ **On-screen diagram visualization** using BIOS interrupts
+* ✔️ Custom **graphics drawing** (boxes, lines, cursor placement)
+* ✔️ Manual cursor control in both **graphics** and **text modes**
+* ✔️ Delay, clear screen, and utility functions for smooth UI
 
-  5. **Helper Functions:**
-      - **Next Function:** Calculates the next index for circular operations.
-      - **Read Character Function:** Reads a character from user input.
-      - **Display Character Function:** Displays a character on the screen.
-      - **Display Ten Function:** Displays the number 10 as two digits.
-      - **Display String Function:** Displays a string on the screen.
-      - **End Line Function:** Adds a newline character.
+---
 
-  6. **Queue Implementation Functions:**
-      - **Initialize Queue Function:** Sets up the circular queue.
-      - **Push Back Function:** Adds an element to the circular queue.
-      - **Pop Front Function:** Removes an element from the front of the circular queue.
-      - **Front Function:** Displays the front element of the circular queue.
-      - **Back Function:** Displays the rear element of the circular queue.
-      - **Is Full Function:** Checks if the circular queue is full.
-      - **Is Empty Function:** Checks if the circular queue is empty.
-      - **Display Queue Function:** Displays the entire circular queue.
+## How It Works
 
-## Usage
+The program uses:
 
-1. **Assembly Language:** Basic understanding required.
-2. **Turbo Assembler:** Compile and run using Turbo Assembler.
-3. **Functionality:** Comments provide insights into circular operations.
-4. **Experimentation:** Modify code for a deeper understanding.
+### **🔧 Data Section**
 
+* Circular queue array
+* Pointers (`queue_front`, `queue_back`)
+* Counters (`count`)
+* Flags (`flag_full`, `flag_empty`)
+* UI strings (menu, prompts, error messages)
+
+### **core Logic**
+
+1. Displays a menu and waits for user input
+2. Executes queue operations using:
+
+   * Pointer arithmetic
+   * `next` function to wrap indices
+   * Graphics functions to visually update cells
+3. Shows results in a mix of **text mode** and **graphics mode**
+
+### **Visualization**
+
+* Uses **INT 10h** to draw:
+
+  * Rectangular queue diagram
+  * Vertical lines separating cells
+  * Elements inside the cells
+* Cursor movement is handled manually to target the right pixel coordinates
+
+---
+
+### **Key Modules Inside `Queue.asm`:**
+
+#### **1. Main Program**
+
+* Menu loop
+* User choice handling
+* Program exit
+
+#### **2. Display & System Utilities**
+
+* `display_menu`
+* `clear` (manual pixel clearing)
+* `sleep` (nested loop delay)
+* `graphics` (draws the queue box)
+
+#### **3. Visualization Helpers**
+
+* `cursor` → position cursor inside a queue cell
+* `emplace_element` → draw pushed value
+* `delete_element` → remove popped value
+
+#### **4. Queue Operations**
+
+* `initialize_queue`
+* `push_back`
+* `pop_front`
+* `front`
+* `back`
+* `display_queue`
+* `is_full`
+* `is_empty`
+
+#### **5. Low-Level Helpers**
+
+* `next` (implements circular index = (index + 1) % size)
+* `read_char`
+* `display_char`
+* `display_string`
+* `endl`
+
+---
+
+## Requirements
+
+To run the program you need:
+
+* **TASM** or **MASM**
+* **DOS / DOSBox** (recommended)
+* Understanding of:
+
+  * x86 registers
+  * Interrupts (INT 10h, INT 21h)
+  * Memory addressing
+
+---
+
+## 🚀 Running the Program
+
+### 1️⃣ Assemble
+
+```bash
+tasm Queue.asm
+```
+
+### 2️⃣ Link
+
+```bash
+tlink Queue.obj
+```
+
+### 3️⃣ Run
+
+```bash
+Queue.exe
+```
+
+If using **DOSBox**, mount the project directory and run the commands inside DOSBox.
+
+---
+
+## 🧭 Usage Guide
+
+Once the program starts:
+
+1. The graphical queue diagram is drawn
+2. A menu appears:
+
+```
+1. Push an element
+2. Pop an element
+3. Print the whole queue
+4. Print the front
+5. Print the back
+6. Exit
+```
+
+3. Enter a number (1–6)
+4. Interact with the queue visually and textually
 
